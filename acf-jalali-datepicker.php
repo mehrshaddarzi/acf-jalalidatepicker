@@ -21,8 +21,7 @@ class ildrm_acf_plugin_jalali_datepicker {
 	
 	// vars
 	var $settings;
-	
-	
+
 	/*
 	*  __construct
 	*
@@ -69,25 +68,16 @@ class ildrm_acf_plugin_jalali_datepicker {
 	function include_field( $version = false ) {
 		
 		// support empty $version
-		if( !$version ) $version = 4;
-		
-		
-		// load textdomain
-		load_plugin_textdomain( 'acf-jalali-datepicker', false, plugin_basename( dirname( __FILE__ ) ) . '/lang' ); 
-		
-		
+		if( !$version ) $version = 5;
+
 		// include
-		include_once('fields/class-ildrm-acf-field-jalali-datepicker-v' . $version . '.php');
+		include_once('fields/class-acf-field-jalali-datepicker-v' . $version . '.php');
 	}
 	
 }
 
-
 // initialize
 new ildrm_acf_plugin_jalali_datepicker();
 
-
 // class_exists check
 endif;
-	
-?>
