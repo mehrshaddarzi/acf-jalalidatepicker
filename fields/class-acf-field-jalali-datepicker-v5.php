@@ -134,8 +134,10 @@ if (!class_exists('ildrm_acf_field_jalali_datepicker')) :
                     jQuery(document).ready(function () {
 
                         if (jQuery("input[field='<?=$field['key']?>'").parents('.acf-field-repeater').data('key')) {
+
+                            // Set Value for Repeater
                             jQuery("input[field='<?=$field['key']?>'").parents('.acf-field-repeater').find('.acf-actions').ready(function () {
-                                jQuery.each(jQuery("input[field='<?=$field['key']?>'").parents('.acf-field-repeater').find('.acf-table input.pwt-datepicker-input-element:visible'), function (i, v) {
+                                jQuery.each(jQuery("input[field='<?=$field['key']?>'").parents('.acf-field-repeater').find('.acf-table input.pwt-datepicker-input-element'), function (i, v) {
                                     if (jQuery(this).attr('name') == '<?=$field['name']?>') {
                                         jQuery(this).attr("value", '<?=$field['value']?>').persianDatepicker({
                                             navigator: {
@@ -153,9 +155,11 @@ if (!class_exists('ildrm_acf_field_jalali_datepicker')) :
                                         jQuery(this).data('value', '<?=$field['value']?>');
                                     }
                                 });
+
+                                // New Row in Repeater
                                 jQuery("input[field='<?=$field['key']?>'").parents('.acf-field-repeater').find('.acf-actions').find('a').on('click', function (e) {
                                     jQuery("input[field='<?=$field['key']?>'").parents('.acf-field-repeater').find('.acf-table').ready(function () {
-                                        jQuery.each(jQuery("input[field='<?=$field['key']?>'").parents('.acf-field-repeater').find('.acf-table input.pwt-datepicker-input-element:visible'), function (i, v) {
+                                        jQuery.each(jQuery("input[field='<?=$field['key']?>'").parents('.acf-field-repeater').find('.acf-table tr:last').prev().find("input.pwt-datepicker-input-element:visible"), function (i, v) {
                                             if (jQuery(this).data('value')) {
                                             } else {
                                                 //acfcloneindex
@@ -178,6 +182,8 @@ if (!class_exists('ildrm_acf_field_jalali_datepicker')) :
                                 });
                             });
                         } else {
+
+                            // Default Field Not Repeater
                             jQuery("input[name='<?=$field['name']?>'").attr("value", '<?=esc_attr($field['value']) ?>').persianDatepicker({
                                 navigator: {
                                     scroll: false
